@@ -36,7 +36,7 @@ CoinRouter.route('/post').post(function (req, res) {
      });
  });
 
- CoinRouter.route('/edit/:id').get(function (req, res) {
+ CoinRouter.route('/edit').get(function (req, res) {
   
   const id = req.params.id;
   console.log(".... editing id %d",id);
