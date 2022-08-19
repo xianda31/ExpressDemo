@@ -1,29 +1,33 @@
 const express = require('express');
 const app = express();
-const CoinRouter = express.Router();
+const MyRouter = express.Router();
 const Coin = require('../models/CoinModel');
 const bodyParser = require('body-parser');
 
 
-CoinRouter.route('/').get(function (req, res) {
+// Home page route
+MyRouter.route('/').get(function (req, res) {
   Coin.find(function (err, coins){
      if(err){
        console.log(err);
      }
      else {
-       res.render('index', {coins: coins});
+       res.render('Catalog', {coins: coins});
      }
    });
 });
 
+MyRouter.route('/about').get(function (req, res) {
+  res.send('About this coins demo');
+});
 
-CoinRouter.route('/create').get(function (req, res) {
+MyRouter.route('/create').get(function (req, res) {
   res.render('create');
 });
 
 
 
-CoinRouter.route('/post').post(function (req, res) {
+MyRouter.route('/save').post(function (req, res) {
    const coin = new Coin(req.body);
    console.log(req.body);
 
@@ -36,7 +40,7 @@ CoinRouter.route('/post').post(function (req, res) {
      });
  });
 
- CoinRouter.route('/edit').get(function (req, res) {
+ MyRouter.route('/edit').get(function (req, res) {
   
   const id = req.params.id;
   console.log(".... editing id %d",id);
@@ -46,4 +50,4 @@ CoinRouter.route('/post').post(function (req, res) {
   });
 });
 
-module.exports = CoinRouter;
+module.exports = MyRouter;

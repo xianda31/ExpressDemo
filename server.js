@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 // const path = require('path');
-const CoinRouter = require('./routes/CoinRouter');
+const MyRouter = require('./routes/CoinRouter');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -29,11 +29,13 @@ app.use(bodyParser.json());
 
 // define GET handler for root URL
 
-app.use('/coins', CoinRouter); 
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname,'public', 'index.html'));
 });
+
+// define  the router module handling  routes starting from /coins
+
+app.use('/coins', MyRouter); 
 
 app.listen(port, function(){
   console.log('server is listening on port %d' , port);
