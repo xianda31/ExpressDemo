@@ -7,17 +7,21 @@
   </head>
   <body>
     <div class="container">
-        <h1>Edit Coin</h1>
-        <form method="post" action="/coins/update/<%= coin._id %>">
+        <h1>modifier une piéce existante</h1>
+        <form method="post" action="/coins/update/<%= coinDoc._id %>">
           <div class="form-group">
             <label for="item">Coin Name</label>
-            <input type="text" class="form-control" id="name" name="name" value="<%= coin.name %>">
+            <input type="text"  id="name" name="name" value="<%= coinDoc.name %>">
           </div>
           <div class="form-group">
             <label for="item">Coin Price</label>
-            <input type="text" class="form-control" id="price" name="price" value="<%= coin.price %>">
+            <input type="text"  id="price" name="price" value="<%= coinDoc.price %>">
           </div>
-          <button type="submit" class="btn btn-default">Update</button>
+          <div class="form-group">
+            <label for="item">db Id</label>
+            <input type="text"  id="id" name="id" value="<%= coinDoc._id %>">
+          </div>
+          <button type="submit" class="btn btn-default">Mise à jour</button>
         </form>
     </div>
   </body>

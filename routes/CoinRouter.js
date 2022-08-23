@@ -18,7 +18,7 @@ MyRouter.route('/').get(function (req, res) {
        console.log(err);
      }
      else {
-       res.render('Catalog', {coins: coins});
+       res.render('Catalog', {coinsTable: coins});
      }
    });
 });
@@ -27,32 +27,54 @@ MyRouter.get('/about',function (req, res) {
   res.send('About this coins demo');
 });
 
+
+
 MyRouter.route('/create').get(function (req, res) {
   res.render('create');
 });
 
 
-MyRouter.post('/save',function (req, res) {
-   const coin = new Coin(req.body);
-   console.log(req.body);
-
-   coin.save()
-     .then(coin => {
-     res.redirect('/coins');
-     })
-     .catch(err => {
-     res.status(400).send("unable to save to database");
-     });
- });
-
+//
+// EDIT
+//
  MyRouter.get('/edit/:id',function (req, res) {
-  console.log ("editing  %s",req.params);
+  
   const id = req.params.id;
   console.log(".... editing id %s",id);
 
-  Coin.findById(id, function (err, coin){
-      res.render('edit', {coin: coin});
+  Coin.findById(id, function (err, doc){
+      res.render('edit', {coinDoc: doc});
  });
 });
 
+
+MyRouter.post('/save',function (req, res) {
+  const coin = new Coin(req.body);
+  console.log('saving ',req.body);
+
+  coin.save()
+    .then(coin => {
+    res.redirect('/coins');
+    })
+    .catch(err => {
+    res.status(400).send("unable to save to database");
+    });
+});
+//
+// UPDATE
+//
+MyRouter.post('/update/:id',function (req, res) {
+  const coin = new Coin(req.body);
+  console.log("new coin d'Id %s => %s %s ",req.params.id,req.body.name,req.body.price) ;
+ 
+
+   Coin.findByIdAndUpdate(req.params.id, req.body,function(err, docs) {
+    if (err) {
+      console.log("... update failed !!!");
+      return next(new Error('Could not load Document')); }
+    else {
+         res.redirect('/coins');
+      }
+    });
+});
 module.exports = MyRouter;

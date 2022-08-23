@@ -12,16 +12,16 @@
           <tr>
             <td><b>Coin Name</b></td>
             <td><b>Coin Price</b></td>
-            <td colspan="2"><b>Action</b></td>
+            <td colspan="4"><b>Action</b></td>
           </tr>
         </thead>
         <tbody>
-          <% for(var i=0; i < coins.length; i++) { %>
+          <% for(var i=0; i < coinsTable.length; i++) { %>
           <tr>
-            <td><%= coins[i].name %></td>
-            <td><%= coins[i].price %></td>
-            <td><%= coins[i].id %></td>
-            <td><a href='/coins/edit/<%= coins[i].id %>' class="btn btn-primary">Edit</a></td>
+            <td><%= coinsTable[i].name %></td>
+            <td><%= coinsTable[i].price %></td>
+            <td><%= coinsTable[i].id %></td>
+            <td><a href='/coins/edit/<%= coinsTable[i].id %>' class="btn btn-primary">Edit</a></td>
             <td><a href="" class="btn btn-danger">Delete</a></td>
           </tr>
           <% } %>

@@ -6,7 +6,7 @@ const port = 3000;
 // const path = require('path');
 const MyRouter = require('./routes/CoinRouter');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');     // body-parser intégré dans Express
 
 // set mongoDB package
 // mongoose.Promise = global.Promise;
@@ -24,8 +24,8 @@ app.set('view engine','ejs') ; // set view engine
 app.set("views", "./public");  // locate the views directory
 
 
-// app.use(bodyParser.urlencoded({extended: false}));
-// app.use(bodyParser.json());
+ app.use(bodyParser.urlencoded({extended: false}));
+ app.use(bodyParser.json());
 
 // define GET handler for root URL
 
