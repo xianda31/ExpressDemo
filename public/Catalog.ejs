@@ -22,7 +22,7 @@
             <td><%= coinsTable[i].price %></td>
             <td><%= coinsTable[i].id %></td>
             <td><a href='/coins/edit/<%= coinsTable[i].id %>' class="btn btn-primary">Edit</a></td>
-            <td><a href="" class="btn btn-danger">Delete</a></td>
+            <td><a href='/coins/delete/<%= coinsTable[i].id %>' class="btn btn-danger">Delete</a></td>
           </tr>
           <% } %>
         </tbody>

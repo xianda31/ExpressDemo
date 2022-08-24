@@ -77,4 +77,20 @@ MyRouter.post('/update/:id',function (req, res) {
       }
     });
 });
+
+
+//
+// DELETE
+//
+MyRouter.get('/delete/:id',function (req, res) { 
+   Coin.deleteOne({_id : req.params.id},function(err, docs){
+    if (err) {
+      console.log("... delete failed !!!");
+      return next(new Error('Could not load Document')); }
+    else {
+         res.redirect('/coins');
+      }
+    });
+});
+
 module.exports = MyRouter;
