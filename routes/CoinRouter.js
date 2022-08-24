@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 // a middleware function with no mount path. This code is executed for every request to the router
 MyRouter.use(function (req, res, next) {
-    console.log('Time:', Date.now());
+    console.log('Time:', Date());
   next();
 });
 
